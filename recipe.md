@@ -4,7 +4,25 @@ Copy this into a `recipe.md` in your project and fill it out.
 
 ## 1. Describe the Problem
 
-_Put or write the user story here. Add any clarifying notes you might have._
+As a user
+So I don't forget the details
+I want to keep a record of friends' names and birthdates
+
+As a user
+So I can make edits when I've got dates wrong
+I want to be able to update a record by passing in a name and new date
+
+As a user
+So I can make edits when people change their name
+I want to be able to update a record by passing in an old and a new name
+
+As a user
+So I can remember to send birthday cards at the right time
+I want to be able to list friends whose birthdays are coming up soon and to whom I need to send a card
+
+As a user
+So I can buy age-appropriate birthday cards
+I want to calculate the upcoming ages for friends with birthdays
 
 ## 2. Design the Class Interface
 
@@ -13,24 +31,38 @@ _Include the initializer, public properties, and public methods with all paramet
 ```python
 # EXAMPLE
 
-class Reminder:
+class BirthdayManager:
     # User-facing properties:
     #   name: string
+    #   birthday: string (YYYY-MM-DD)
 
-    def __init__(self, name):
+    def __init__(self):
+        self.manager = {}
         # Parameters:
-        #   name: string
+        #   None
         # Side effects:
-        #   Sets the name property of the self object
+        #   None
+
         pass # No code here yet
 
-    def remind_me_to(self, task):
+    def add(self, name, dob)
         # Parameters:
-        #   task: string representing a single task
+        #   name: string representing a friend's name
+        #   dob:  string representing a friend's dob (YYY-MM-DD)
         # Returns:
         #   Nothing
         # Side-effects
-        #   Saves the task to the self object
+        #   Saves the friend's birthday to the self object
+        pass # No code here yet
+
+    def update_birthday(self, name, new_date)
+         # Parameters:
+        #   name: string representing a friend's name
+        #   new_date:  string representing a friend's updated dob (YYY-MM-DD)
+        # Returns:
+        #   Nothing
+        # Side-effects
+        #   updates the friend's birthday withthe new birthday date to the self object
         pass # No code here yet
 
     def remind(self):
