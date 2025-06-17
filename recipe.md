@@ -53,6 +53,9 @@ class BirthdayManager:
         #   Nothing
         # Side-effects
         #   Saves the friend's birthday to the self object
+        #   Throws exception if name is an empty string
+        #   Throws exception if dob is in incorrect format
+
         pass # No code here yet
 
     def update_birthday(self, name, new_date)
@@ -62,14 +65,42 @@ class BirthdayManager:
         # Returns:
         #   Nothing
         # Side-effects
-        #   updates the friend's birthday withthe new birthday date to the self object
+        #   updates the friend's birthday with the new birthday date to the self object
+        #   Throws exception if name doesn't exist in Birthday Manager
+
         pass # No code here yet
 
-    def remind(self):
+    def update_name(self, name, new_name)
+         # Parameters:
+        #   name: string representing a friend's name
+        #   new_name: string representing a friend's updated name
         # Returns:
-        #   A string reminding the user to do the task
+        #   Nothing
+        # Side-effects
+        #   updates the friend's name with the new name to the self object
+        #   Throws exception if name doesn't exist in Birthday Manager
+        #   Throws exception if new_name is an empty string
+
+        pass # No code here yet
+
+    def upcoming_birthdays(self):
+         # Parameters:
+        #    None
+        # Returns:
+        #   List of friends + birthdays for the birthdays coming up in the next 30 days
+        # Side-effects
+        #   None
+
+        pass # No code here yet
+
+    def upcoming_age_calculator(self):
+         # Parameters:
+        #    None
+        # Returns:
+        #   A list of friends + upcoming ages
         # Side-effects:
-        #   Throws an exception if no task is set
+        #   None
+        
         pass # No code here yet
 ```
 
