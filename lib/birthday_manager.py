@@ -24,31 +24,21 @@ class BirthdayManager:
 
         self.manager[name] = dob
 
-
     def update_birthday(self, name, new_date):
-         # Parameters:
-        #   name: string representing a friend's name
-        #   new_date:  string representing a friend's updated dob (YYY-MM-DD)
-        # Returns:
-        #   Nothing
-        # Side-effects
-        #   updates the friend's birthday with the new birthday date to the self object
-        #   Throws exception if name doesn't exist in Birthday Manager
-
-        pass # No code here yet
+        if self.manager.get(name) == None:
+            raise Exception("No friend with that name")
+        if self.__dob_format_checker(new_date) == False:
+            raise Exception("Warning! new_date format incorrect!")        
+        self.manager[name] = new_date
 
     def update_name(self, name, new_name):
-         # Parameters:
-        #   name: string representing a friend's name
-        #   new_name: string representing a friend's updated name
-        # Returns:
-        #   Nothing
-        # Side-effects
-        #   updates the friend's name with the new name to the self object
-        #   Throws exception if name doesn't exist in Birthday Manager
-        #   Throws exception if new_name is an empty string
+        if new_name == "":
+            raise Exception("new_name cannot be empty string!")
+        if self.manager.get(name) == None:
+            raise Exception("No friend with that name")
+        self.manager[new_name] = self.manager[name]
+        del self.manager[name]
 
-        pass # No code here yet
 
     def upcoming_birthdays(self):
          # Parameters:
