@@ -1,4 +1,5 @@
 
+from datetime import datetime 
 class BirthdayManager:
     # User-facing properties:
     #   name: string
@@ -39,16 +40,41 @@ class BirthdayManager:
         self.manager[new_name] = self.manager[name]
         del self.manager[name]
 
+    def _dob_string_converter(self, dob):
+        dob_dt = datetime.strptime(dob, "%Y-%m-%d")
+        return dob_dt
 
+    def _dob_dt_converter(self, dob_dt):
+        dob_str = dob_dt.strftime("%Y-%m-%d")
+        return dob_str
+    
     def upcoming_birthdays(self):
-         # Parameters:
-        #    None
-        # Returns:
-        #   List of friends + birthdays for the birthdays coming up in the next 30 days
-        # Side-effects
-        #   None
 
-        pass # No code here yet
+        today_dt = datetime.today()
+        this_month = today_dt.month
+        next_month = this_month + 1
+        
+        birthday_dict_list = [
+                            {
+                                friend: self._dob_string_converter(birthday)
+                            } 
+                                for friend, birthday in self.manager.items()
+                            ]
+
+        upcoming_list = []
+        for item in birthday_dict_list:                 # list of dictionaries
+            month = list((item.values()))[0].month      # unpacked view object 
+            day = list((item.values()))[0].day          # unpacked view object 
+            if month == this_month and day > today_dt.day or month == next_month:
+                name_key = list(item.keys())[0]         # unpacked view object 
+                birthday_str = self._dob_dt_converter(list((item.values()))[0]) # unpacked view object passed to dt_converter
+                upcoming_list.append({name_key: birthday_str})
+                
+        return  upcoming_list 
+
+
+
+        
 
     def upcoming_age_calculator(self):
          # Parameters:

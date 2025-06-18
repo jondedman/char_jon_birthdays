@@ -1,5 +1,6 @@
 from lib.birthday_manager import BirthdayManager
 import pytest
+from datetime import datetime
 
 def test_Birthday_Manager_instance_has_empty_dictionary():
     birthdays = BirthdayManager()
@@ -111,4 +112,39 @@ def test_update_name_with_empty_string_for_new_nameraises_an_exception():
         birthdays.update_name("Char", "")
     error_message = str(error.value)
     assert error_message == "new_name cannot be empty string!"
-       
+
+
+def test_dob_string_converter():
+        birthdays = BirthdayManager()
+        assert isinstance(birthdays._dob_string_converter("1993-11-17"), datetime)
+        assert birthdays._dob_string_converter("1993-11-17").month == 11
+        assert birthdays._dob_string_converter("1993-11-17").day == 17
+
+def test__dob_dt_converter():
+        birthdays = BirthdayManager()
+        assert isinstance(birthdays._dob_dt_converter(datetime(1990, 6, 19, 0, 0)), str)
+        assert birthdays._dob_dt_converter(datetime(1990, 6, 29, 0, 0)) == "1990-06-29"
+
+
+"""   
+When called
+upcoming_birthdays returns a list of friends with birthdays this month and next month
+"""
+def test_upcoming_birthdays_returns_list_of_upcoming_birthdays():
+    birthdays = BirthdayManager()
+    birthdays.add("Char", "1990-06-19") # This month
+    birthdays.add("Abby", "1993-07-20") # Next month
+    birthdays.add("Adam", "1993-08-28") # N/A
+    birthdays.add("Jon", "1996-01-18") # N/A
+    assert type(birthdays.upcoming_birthdays()) == list
+    assert birthdays.upcoming_birthdays() == [{"Char": "1990-06-19"}, {"Abby":"1993-07-20"}]
+    birthdays.add("Jon", "1996-07-01") # Next month
+    assert birthdays.upcoming_birthdays() == [{"Char": "1990-06-19"}, {"Abby":"1993-07-20"}, {"Jon": "1996-07-01"}]
+
+
+
+
+
+
+
+

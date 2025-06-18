@@ -87,7 +87,7 @@ class BirthdayManager:
          # Parameters:
         #    None
         # Returns:
-        #   List of friends + birthdays for the birthdays coming up in the next 30 days
+        #   List of friends + birthdays for the birthdays coming up this month and next month
         # Side-effects
         #   None
 
