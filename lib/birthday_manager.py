@@ -1,9 +1,7 @@
 
 from datetime import datetime 
+
 class BirthdayManager:
-    # User-facing properties:
-    #   name: string
-    #   birthday: string (YYYY-MM-DD)
 
     def __init__(self):
         self.manager = {}
@@ -73,15 +71,15 @@ class BirthdayManager:
         return  upcoming_list 
 
 
-
-        
-
     def upcoming_age_calculator(self):
-         # Parameters:
-        #    None
-        # Returns:
-        #   A list of friends + upcoming ages
-        # Side-effects:
-        #   None
-        
-        pass # No code here yet
+        new_year = self._dob_string_converter("2025-01-01")
+        upcoming_birthdays = self.upcoming_birthdays()
+
+        upcoming_ages = []
+        for dict in self.upcoming_birthdays():
+            name_key = list(dict.keys())[0]
+            age_dt = new_year - self._dob_string_converter(list(dict.values())[0])
+            age = age_dt.days // 365
+            upcoming_ages.append({name_key: age + 1})
+
+        return upcoming_ages
