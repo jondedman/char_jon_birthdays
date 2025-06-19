@@ -130,21 +130,34 @@ def test__dob_dt_converter():
 When called
 upcoming_birthdays returns a list of friends with birthdays this month and next month
 """
+# Since datetime.today() will vary, should use mocks in the tests to ensure consistency of result! 
+
 def test_upcoming_birthdays_returns_list_of_upcoming_birthdays():
     birthdays = BirthdayManager()
-    birthdays.add("Char", "1990-06-19") # This month
+    birthdays.add("Char", "1990-06-29") # This month
     birthdays.add("Abby", "1993-07-20") # Next month
     birthdays.add("Adam", "1993-08-28") # N/A
     birthdays.add("Jon", "1996-01-18") # N/A
     assert type(birthdays.upcoming_birthdays()) == list
-    assert birthdays.upcoming_birthdays() == [{"Char": "1990-06-19"}, {"Abby":"1993-07-20"}]
-    birthdays.add("Jon", "1996-07-01") # Next month
-    assert birthdays.upcoming_birthdays() == [{"Char": "1990-06-19"}, {"Abby":"1993-07-20"}, {"Jon": "1996-07-01"}]
+    assert birthdays.upcoming_birthdays() == [{"Char": "1990-06-29"}, {"Abby":"1993-07-20"}]
+    birthdays.add("Jon", "1995-07-01") # Next month
+    assert birthdays.upcoming_birthdays() == [{"Char": "1990-06-29"}, {"Abby":"1993-07-20"}, {"Jon": "1995-07-01"}]
 
 
+"""   
+When called
+upcoming_age_calculator returns a list of friends and their upcoming ages
+"""
+# Since datetime.today() will vary, should use mocks in the tests to ensure consistency of result! 
 
-
-
-
+def test_upcoming_age_calculator_returns_list_of_friends_and_ages():
+    birthdays = BirthdayManager()
+    birthdays.add("Char", "1990-06-29") # 35
+    birthdays.add("Abby", "1993-07-20") # 32
+    birthdays.add("Adam", "1993-08-28") # 32
+    assert type(birthdays.upcoming_age_calculator()) == list
+    assert birthdays.upcoming_age_calculator() == [{"Char": 35}, {"Abby": 32}]
+    birthdays.add("Jon", "1995-07-01") # 30
+    assert birthdays.upcoming_age_calculator() == [{"Char": 35}, {"Abby": 32}, {"Jon": 30}]
 
 
